@@ -4,10 +4,16 @@ type CounterState = {
   count: number;
 };
 
-type CounterAction = {
-  type: string;
+type UpdateAction = {
+  type: "increment" | "decrement";
   payload: number;
 };
+
+type resetAction = {
+  type: "reset";
+};
+
+type CounterAction = UpdateAction | resetAction;
 
 const initialState = { count: 0 };
 
@@ -17,6 +23,8 @@ function reducer(state: CounterState, action: CounterAction) {
       return { count: state.count + action.payload };
     case "decrement":
       return { count: state.count - action.payload };
+    case "reset":
+      return initialState;
     default:
       return state;
   }
@@ -34,6 +42,7 @@ const Counter = () => {
       <button onClick={() => dispatch({ type: "decrement", payload: 5 })}>
         dec by 5
       </button>
+      <button onClick={() => dispatch({ type: "reset" })}>reset</button>
     </>
   );
 };
