@@ -1,11 +1,10 @@
 import "./App.css";
-
-import RandomNumber from "./components/restriction/RandomNumber";
+import Toast from "./components/Toast";
 
 function App() {
   return (
     <div className="App">
-      <RandomNumber value={5} isPositive={true} />
+      <Toast position="center" />
     </div>
   );
 }
